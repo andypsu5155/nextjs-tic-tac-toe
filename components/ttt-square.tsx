@@ -13,9 +13,8 @@ export default function TttSquare({children, num}: {children: React.ReactNode, n
           return;
         } else {
           updateGameBoard(playerTurn, num);
-          const winner = checkForWinner();
-          console.log('The winner is: ', winner);
           togglePlayerTurn();
+          return;
         }
       } else {
         alert("The game is over! Please refresh the page to play again.");
@@ -24,7 +23,7 @@ export default function TttSquare({children, num}: {children: React.ReactNode, n
     }
 
   return (
-    <div className='flex items-center justify-center text-[10rem] w-[100%] aspect-square bg-blue-500 border-[10px] border-gray-300'
+    <div className='flex items-center justify-center text-[8rem] w-[100%] aspect-square bg-blue-500 border-[10px] border-gray-300'
          onClick={() => updateSquareValue(num)}>
       {children}
     </div>

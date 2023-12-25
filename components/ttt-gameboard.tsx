@@ -8,7 +8,7 @@ export default function TttGameboard() {
   const {gameMode, viewGameBoard} = useTttContext();
 
   return (
-    <section className={`grid grid-cols-3 text-center w-[60%] mx-auto ${gameMode === null ? 'hidden' : ''}`}>
+    <section className={`grid grid-cols-3 text-center w-[25%] mx-auto ${gameMode === null ? 'hidden' : ''}`}>
         <TttSquare num={0}>{viewGameBoard(0)}</TttSquare>
         <TttSquare num={1}>{viewGameBoard(1)}</TttSquare>
         <TttSquare num={2}>{viewGameBoard(2)}</TttSquare>

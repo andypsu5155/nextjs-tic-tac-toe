@@ -19,10 +19,11 @@ export default function TttFooter() {
                     <p className='text-6xl'>{playerTurn}</p>
                 </>
             ) : (
-                <>
+                <div className='flex flex-col items-center justify-center'>
                     <h2 className = 'text-5xl'>The winner is:</h2>
                     <p className='text-8xl'>{winner}</p>
-                </>
+                    <a href='/' className='text-4xl bg-blue-400 p-10 rounded-3xl text-gray-800 hover:bg-blue-600 hover:text-gray-950 transition-all'>Start a New Game!</a>
+                </div>
             )}
         </section>
     )

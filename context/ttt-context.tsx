@@ -21,14 +21,17 @@ const TttContext = createContext<TttContextType | null>(null);
 let gameBoard: (playerTurn)[][] = [
   [null, null, null],
   [null, null, null],
-  [null, null, null]
+  [null, null, null],
 ];
 
 // this function updates the gameBoard array
 export function updateGameBoard(playerTurn: playerTurn, num: number) {  
   gameBoard[Math.floor(num / 3)][num % 3] = playerTurn;
-
-  console.log(gameBoard);
+  
+  console.log(gameBoard[0]);
+  console.log(gameBoard[1]);
+  console.log(gameBoard[2]);
+  console.log(' ');
 }
 
 // this function views the gameBoard array
@@ -40,14 +43,19 @@ export function viewGameBoard(num: number) {
 export function checkForWinner() {
   // check rows
   for (let i = 0; i < 3; i++) {
-    if (gameBoard[i][0] === gameBoard[i][1] && gameBoard[i][1] === gameBoard[i][2])
-      return gameBoard[i][0];
+    console.log('checking row ', i)
+    if(gameBoard[i][0] !== null && gameBoard[i][1] !== null && gameBoard[i][2] !== null) {
+      if (gameBoard[i][0] === gameBoard[i][1] && gameBoard[i][1] === gameBoard[i][2])
+        return gameBoard[i][0];
+    }
   }
 
   // check columns
   for (let i = 0; i < 3; i++) {
-    if (gameBoard[0][i] === gameBoard[1][i] && gameBoard[1][i] === gameBoard[2][i])
-      return gameBoard[0][i];
+    if (gameBoard[0][i] !== null && gameBoard[1][i] !== null && gameBoard[2][i] !== null) {
+      if (gameBoard[0][i] === gameBoard[1][i] && gameBoard[1][i] === gameBoard[2][i])
+        return gameBoard[0][i];
+    }
   }
 
   // check diagonals
