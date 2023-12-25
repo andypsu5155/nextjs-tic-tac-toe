@@ -1,27 +1,32 @@
 "use client"
 
 import React from 'react'
-import { useState } from 'react';
 import { useTttContext } from '@/context/ttt-context';
 
+export default function TttSquare({children, num}: {children: React.ReactNode, num: number}) {
+    const {playerTurn, togglePlayerTurn, updateGameBoard, viewGameBoard, checkForWinner} = useTttContext();
 
-export default function TttSquare({ num }: { num: number }) {
-    const {playerTurn, togglePlayerTurn, updateGameBoard} = useTttContext();
-    type squareValueTypes = 'X' | 'O' | null;
-
-    const [squareValue, setSquareValue] = useState<squareValueTypes>(null);
-
-    function updateSquareValue(value: squareValueTypes, num: number) {
-        if (squareValue === null) { 
-            setSquareValue(playerTurn);
-            updateGameBoard(playerTurn, num);
-            togglePlayerTurn();
-        } else
-            return;
+    function updateSquareValue(num: number) {
+      if(checkForWinner() === null) {
+        if(viewGameBoard(num) !== null) {
+          alert("This square has already been taken! Please select another square.")
+          return;
+        } else {
+          updateGameBoard(playerTurn, num);
+          const winner = checkForWinner();
+          console.log('The winner is: ', winner);
+          togglePlayerTurn();
+        }
+      } else {
+        alert("The game is over! Please refresh the page to play again.");
+        return;
+      }
     }
 
   return (
     <div className='flex items-center justify-center text-[10rem] w-[100%] aspect-square bg-blue-500 border-[10px] border-gray-300'
-        onClick={() => updateSquareValue('X', num)}>{squareValue != null ? squareValue : null}</div>
+         onClick={() => updateSquareValue(num)}>
+      {children}
+    </div>
   )
 }
